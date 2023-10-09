@@ -16,25 +16,33 @@ import org.springframework.transaction.annotation.Transactional;
 public interface InterfaceCrud<T> extends Serializable {
 
 	T findMaxObjectEntity(Class<T> classObj) throws Exception;
-
+	
+	//salva os dados
 	void save(T obj) throws Exception;
 	
+	//salva ou atualiza
 	T saveRetorno(T obj) throws Exception;
-
+	
+	
 	void persist(T obj) throws Exception;
 
 	void saveOrUpdate(Object obj) throws Exception;
-
+	
+	//realiza o update/atualização de dados
 	void update(T obj) throws Exception;
 
 	void delete(T obj) throws Exception;
 
+	//salva ou atualiza e retorna o objeto em estado persistente
 	T merge(T obj) throws Exception;
 
-	List<T> findList(Class<T> obj) throws Exception;
+	//carrega a lista de dados de determinada classe
+	List<T> findList(Class<T> objs) throws Exception;
 
 	Object findById(Class<T> entidade, Long id) throws Exception;
 
+	T findByPorId(Class<T>  entidade, Long id) throws Exception;
+	
 	List<T> findListByProperty(Class<T> entidade, Object atributo, Object valor)
 			throws Exception;
 
@@ -102,5 +110,8 @@ public interface InterfaceCrud<T> extends Serializable {
 	
 	Query obterQuery(String query) throws Exception;
 	
+	
+	
+	//carregamendo dinâmico com JSF e primefaces
 	 List<T> findListByQueryDinamica(String query, int iniciaNoRegistro, int maximoResultado) throws Exception; 
 }
