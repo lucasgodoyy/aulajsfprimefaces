@@ -56,7 +56,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jstl-api-1.2.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jstl-impl-1.2.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/junit-4.5.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/openid4java-nodeps-0.9.6.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/poi-3.6.jar"/>
@@ -95,5 +94,7 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/start-1.0.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/taglib-core-0.4.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xmlbeans-1.0.3.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/junit-4.11.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/hamcrest-2.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

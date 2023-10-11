@@ -15,7 +15,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.engine.SessionFactoryImplementor;
 
 /**
- * Responsavel por estabelecer a conex�o do hibernate
+ * Responsavel por estabelecer a conexão do hibernate
  * 
  */
 @ApplicationScoped
@@ -28,7 +28,7 @@ public class HibernateUtil implements Serializable {
 	private static SessionFactory sessionFactory = buildSessionFactory();
 
 	/**
-	 * Respons�vel por ler o arquivo de configura��o hibernate.cfg.xml
+	 * Responsável por ler o arquivo de configuração hibernate.cfg.xml
 	 * @return SessionFactory
 	 */
 	private static SessionFactory buildSessionFactory() {
@@ -55,7 +55,7 @@ public class HibernateUtil implements Serializable {
 	}
 
 	/**
-	 * Retonar a sess�o do SessionFactory
+	 * Retonar a sessão no SessionFactory
 	 * @return Session
 	 */
 	public static Session getCurrentSession() {
@@ -63,7 +63,7 @@ public class HibernateUtil implements Serializable {
 	}
 
 	/**
-	 *  Abre uma nova sess�o no SessionFactory
+	 *  Abre uma nova sessão no SessionFactory
 	 * @return Session
 	 */
 	public static Session openSession() {
@@ -73,7 +73,7 @@ public class HibernateUtil implements Serializable {
 	}
 
 	/**
-	 * Obtem a conection do provedor de conex�es configurado
+	 * Obtem a conection do provedor de conexões configurado
 	 * 
 	 * @return Connection
 	 * @throws SQLException
