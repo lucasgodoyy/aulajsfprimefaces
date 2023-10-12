@@ -54,7 +54,8 @@ public class ReportUtil implements Serializable {
 	private String caminhoSubreport_Dir = "";
 	private File arquivoGerado = null;
 
-	public StreamedContent geraRelatorio(List<?> listDataBeanColletionReport, HashMap parametrosRelatorio,
+	public StreamedContent geraRelatorio(List<?> listDataBeanColletionReport, 
+			HashMap parametrosRelatorio,
 			String nomeRelatorioJasper, String nomeRelatorioSaida, int tipoRelatorio) throws JRException, FileNotFoundException {
 
 		/*
