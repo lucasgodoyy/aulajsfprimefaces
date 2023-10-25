@@ -21,7 +21,7 @@ import org.hibernate.engine.SessionFactoryImplementor;
 @ApplicationScoped
 public class HibernateUtil implements Serializable {
 
-	private static final String JAVA_COMP_ENV_JDBC_DATA_SOURCE = "java:/comp/env/jdbc/datasouce";
+	private static final String JAVA_COMP_ENV_JDBC_DATA_SOURCE = "java:/comp/env/jdbc/datasource";
 
 	private static final long serialVersionUID = 1L;
 
@@ -85,7 +85,7 @@ public class HibernateUtil implements Serializable {
 
 	/**
 	 * 
-	 * @return Connection no InitialContext java:/comp/env/jdbc/datasouce
+	 * @return Connection no InitialContext java:/comp/env/jdbc/datasource
 	 * @throws Exception
 	 */
 	public static Connection getConnection() throws Exception {

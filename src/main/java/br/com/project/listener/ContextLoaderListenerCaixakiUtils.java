@@ -24,6 +24,8 @@ public class ContextLoaderListenerCaixakiUtils extends
 		return getWac().getBean(idNomeBean);
 	}
 	
-	
+	public static Object getBean(Class<?> classe) {
+		return getWac().getBean(classe);
+	}
 	
 }
