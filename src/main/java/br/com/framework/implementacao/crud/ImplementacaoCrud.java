@@ -1,4 +1,4 @@
-package br.com.framework.interfac.crud;
+package br.com.framework.implementacao.crud;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.framework.hibernate.session.HibernateUtil;
-import br.com.framework.implementacao.crud.JdbcTemplateImpl;
-import br.com.framework.implementacao.crud.SimpleJdbcInsertImplents;
-import br.com.framework.implementacao.crud.SimpleJdbcTemplateImpl;
+import br.com.framework.interfac.crud.InterfaceCrud;
 
 @Component
 @Transactional
