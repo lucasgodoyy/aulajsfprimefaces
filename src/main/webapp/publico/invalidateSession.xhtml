@@ -43,24 +43,26 @@
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="username" value="Login:" />
 				<p:inputText id="username" value="#{loginBeanView.username}"
-					required="true" label="username" requiredMessage="Informe o login." />
+					required="true" label="username" requiredMessage="Informe o login." 
+					/>
 
 				<h:outputLabel for="password" value="Senha:" />
 				<p:password id="password" value="#{loginBeanView.password}"
-					required="true" label="password" requiredMessage="Informe a senha." />
+					required="true" label="password" requiredMessage="Informe a senha." 
+					/>
 
 				<f:facet name="footer">
 					<p:commandButton value="Encerrar"
 						style="height:40px;width:100px;background:#CDCDC1;border: 1px solid #FFFFFF;"
-						update="form:msg" actionListener="#{loginBeanView.invalidar}"
+						actionListener="#{loginBeanView.invalidar}"
+						update="form:msg" 
 						oncomplete="handleLoginRequest(xhr, status, args)" ajax="true" />
 				</f:facet>
 			</h:panelGrid>
 		</p:dialog>
 
 	</h:body>
-</h:form>
-<script>
+	<script>
 	$(function() {
 		PF('dlg').show();
 	});
@@ -71,8 +73,11 @@
 			}, 100);
 		} else {
 			PF('dlg').hide();
-			logout('#{request.contextPath}');
+			document.location = '#{request.contextPath}' + "/j_spring_security_logout" 
+			
 		}
 	}
 </script>
+</h:form>
+
 </html>
