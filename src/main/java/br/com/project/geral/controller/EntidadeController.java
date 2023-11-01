@@ -1,6 +1,7 @@
 package br.com.project.geral.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +22,14 @@ public class EntidadeController extends ImplementacaoCrud<Entidade> implements
 	@Autowired
 	private SrvEntidade srvEntidade;
 	
-	public Entidade findUserLogado(String userLogado) throws Exception {
-		return super.findUninqueByProperty(Entidade.class, userLogado,
-				"ent_login", " and entity.ent_inativo is false ");
-	}
+	
+		
+		public Entidade findUserLogado(String userLogado) throws Exception {
+			return super.findUninqueByProperty(Entidade.class, userLogado,
+					"ent_login", " and entity.ent_inativo is false ");
+		}
+		
+	
 
 	
 	

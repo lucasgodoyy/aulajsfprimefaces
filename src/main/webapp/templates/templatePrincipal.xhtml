@@ -32,7 +32,10 @@
 		<h:body>
 			<script type="text/javascript" charset="UTF-8">
 				$.noConflict();
-
+				localeData_pt_br();
+				ocultarMenu();
+				initTemplate();
+				
 				$(document).keydown(function(e) {
 					if (e.which == 116) {
 						return 116;
@@ -147,9 +150,12 @@
 			
 			
 		</h:body>
-		<script>
-		$('#menupop').hide();
-		</script>
+
+ <script type="text/javascript" charset="UTF-8">
+		carregarIdElementosPagina();
+		
+	</script>
+	
 	</h:form>
 </sec:isAuthenticated>
 </html>
