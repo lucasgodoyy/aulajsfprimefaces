@@ -2,7 +2,6 @@ package br.com.project.exception;
 
 import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerFactory;
-import javax.faces.context.ExceptionHandlerWrapper;
 
 public class CustomExceptionHandlerFactory extends ExceptionHandlerFactory{
 

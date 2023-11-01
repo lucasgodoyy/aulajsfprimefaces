@@ -146,6 +146,8 @@
 		</property>
 	</bean>
 
+<!-- Bean de contexto application -->
+<bean id="contextoBean" class=" br.com.project.bean.view.ContextoBean" scope="session" lazy-init="false"/>
 
 	<bean id="reportUtil"
 		class="br.com.project.report.util.ReportUtil" />
@@ -154,18 +156,20 @@
 
 	<!-- Services -->
 	<bean id="srvLogin" class="br.com.srv.implementacao.SrvLoginImpl" />
-
+	<bean id="srvEntidade" class="br.com.srv.implementacao.SrvEntidadeImpl" /> 
 
 
 
 	<!--DAOS -->
-	<bean id="repositoryLogin"
-		class="br.com.dao.implementacao.DaoLogin" />
+	<bean id="repositoryLogin" class="br.com.dao.implementacao.DaoLogin" />
+	<bean id="repositoryEntidade" class="br.com.dao.implementacao.DaoEntidade" />
+
 
 	<!-- Controllers -->
-	<bean id="sessionController"
-		class="br.com.project.geral.controller.SessionControllerImpl"
-		scope="singleton" />
+	<bean id="sessionController" class="br.com.project.geral.controller.SessionControllerImpl" scope="singleton" />
+<bean id="entidadeController" class="br.com.project.geral.controller.EntidadeController" />
+
+
 
 </beans>
  

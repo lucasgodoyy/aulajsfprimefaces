@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import org.springframework.stereotype.Component;
 
-import com.mchange.v2.sql.filter.SynchronizedFilterCallableStatement;
-
 @Component
 public class UtilFramework implements Serializable {
 

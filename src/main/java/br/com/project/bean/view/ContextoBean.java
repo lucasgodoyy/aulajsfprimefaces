@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import br.com.project.geral.controller.EntidadeController;
+import br.com.project.geral.controller.SessionController;
 import br.com.project.model.classes.Entidade;
 
 @Scope(value = "session")
@@ -25,6 +26,26 @@ public class ContextoBean implements Serializable{
 	@Autowired
 	private EntidadeController entidadeController;
 	
+	@Autowired
+	private SessionController sessionController;
+
+	
+	/**
+	 * 
+	 * @return String Usu�rio logado remote user
+	 */
+	public String getUserLogado() {
+		return getExternalContext().getRemoteUser();
+	}
+	
+	/**
+	 * 
+	 * @return String Usuário logado user principal
+	 */
+	public String getUserPrincipal() {
+		return getExternalContext().getUserPrincipal().getName();
+	}
+	
 	/**
 	 * 
 	 * @return String Usuário logado Authentication Spring security
@@ -33,35 +54,34 @@ public class ContextoBean implements Serializable{
 		return SecurityContextHolder.getContext().getAuthentication();
 	}
 	
-	public Entidade getEntidadeLogada() throws Exception {
-Entidade entidade = (Entidade) getExternalContext().getSessionMap().get(USER_LOGADO_SESSAO);
-		
-		if (entidade == null || (entidade != null && !entidade.getEnt_login().equals(getUserPrincipal()))) {
-			if (getAuthentication().isAuthenticated()) {
-				entidadeController.updateUltimoAcessoUser(getAuthentication().getName());
-				entidade = entidadeController.findUserLogado(getAuthentication().getName());
-				getExternalContext().getSessionMap().put(USER_LOGADO_SESSAO, entidade);
-				sessionController.addSession(entidade.getEnt_login(), (HttpSession) getExternalContext().getSession(false));
-			}
-		}
-		return entidade;
-	}
 	/**
 	 * 
-	 * @return String Usuário logado user principal
-	 */
-	public String getUserPrincipal() {
-		return getExternalContext().getUserPrincipal().getName();
-	}
-	/**
-	 * 
-	 * @return ExternalContext da application
+	 * @return ExternalContext da application JSF
 	 */
 	public ExternalContext getExternalContext() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
 		return externalContext;
 	}
+
 	
 	
+	public Entidade getEntidadeLogada() throws Exception {
+		Entidade entidade = (Entidade) getExternalContext().getSessionMap().get(USER_LOGADO_SESSAO);
+		
+		if (entidade == null || (entidade != null && !entidade.getEnt_login().equals(getUserPrincipal()))) {
+			if (getAuthentication().isAuthenticated()) {
+				entidadeController.updateUltimoAcessoUser(getAuthentication().getName());
+				entidade = entidadeController.findUserLogado(getAuthentication().getName());
+				getExternalContext().getSessionMap().put(USER_LOGADO_SESSAO, entidade);
+				sessionController.addSession(entidade.getEnt_login(), (HttpSession) getExternalContext().getSession(true));
+		
+		
+			}
+		}
+		return entidade;
+	}
+	
+	
+
 }

@@ -14,35 +14,31 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Transactional
 public interface InterfaceCrud<T> extends Serializable {
-
+	
+	
+	
 	T findMaxObjectEntity(Class<T> classObj) throws Exception;
-	
-	//salva os dados
+
 	void save(T obj) throws Exception;
-	
-	//salva ou atualiza
+
+	void clearSession() throws Exception;
+
 	T saveRetorno(T obj) throws Exception;
-	
-	
+
 	void persist(T obj) throws Exception;
 
 	void saveOrUpdate(Object obj) throws Exception;
-	
-	//realiza o update/atualização de dados
+
 	void update(T obj) throws Exception;
 
 	void delete(T obj) throws Exception;
 
-	//salva ou atualiza e retorna o objeto em estado persistente
 	T merge(T obj) throws Exception;
 
-	//carrega a lista de dados de determinada classe
-	List<T> findList(Class<T> objs) throws Exception;
+	List<T> finList(Class<T> obj) throws Exception;
 
 	Object findById(Class<T> entidade, Long id) throws Exception;
 
-	T findByPorId(Class<T>  entidade, Long id) throws Exception;
-	
 	List<T> findListByProperty(Class<T> entidade, Object atributo, Object valor)
 			throws Exception;
 
@@ -50,19 +46,12 @@ public interface InterfaceCrud<T> extends Serializable {
 
 	List<T> findListByQueryDinamica(String s) throws Exception;
 
-	//executar update com HQL
 	void executeUpdateQueryDinamica(String s) throws Exception;
 
-	//executar update com SQL
 	void executeUpdateSQLDinamica(String s) throws Exception;
 
-	//limpa a sessão do hibernate
-	void clearSession() throws Exception;
-	
-	// Retira um objeto da sessão do hibernate
 	void evict(Object obj) throws Exception;
 
-	
 	T carregar(Class<T> class1, Long long1) throws Exception;
 
 	Class<T> getClass(Class<T> entidade) throws Exception;
@@ -73,10 +62,8 @@ public interface InterfaceCrud<T> extends Serializable {
 	List<T> findByPropertyId(Class<T> entidade, Long id, Object atributo)
 			throws Exception;
 
-	//Retorna sessão do hibernate
 	Session getSession() throws Exception;
 
-	
 	List<?> getListSQLDinamica(String sql) throws Exception;
 
 	T findUninqueByPropertyId(Class<T> entidade, Long id, Object atributo)
@@ -94,9 +81,7 @@ public interface InterfaceCrud<T> extends Serializable {
 
 	T findUninqueByPropertyId(Class<T> entidade, Long id, Object atributo,
 			String condicaoAdicional) throws Exception;
-	
-	
-	//JDBC do Spring
+
 	JdbcTemplate getJdbcTemplate();
 
 	SimpleJdbcTemplate getSimpleJdbcTemplate();
@@ -106,12 +91,9 @@ public interface InterfaceCrud<T> extends Serializable {
 	public T findUninqueByProperty(Class<T> entidade, Object valor,
 			String atributo, String condicao) throws Exception;
 	
-	Long totalRegistro(String table) throws Exception;
+	Long totalRegistro(String tabela) throws Exception;
 	
 	Query obterQuery(String query) throws Exception;
 	
-	
-	
-	//carregamendo dinâmico com JSF e primefaces
 	 List<T> findListByQueryDinamica(String query, int iniciaNoRegistro, int maximoResultado) throws Exception; 
 }

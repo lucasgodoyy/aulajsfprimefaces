@@ -16,7 +16,7 @@ import br.com.project.bean.geral.BeanManagedViewAbstract;
 public class EntidadeBeanView extends BeanManagedViewAbstract {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Autowired
 	private ContextoBean contextoBean;
 	
@@ -26,6 +26,7 @@ public class EntidadeBeanView extends BeanManagedViewAbstract {
 
 	public Date getUltimoAcesso() throws Exception {
 		return contextoBean.getEntidadeLogada().getEnt_ultimoacesso();
+		
 	}
 
 	

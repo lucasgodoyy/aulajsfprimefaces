@@ -27,7 +27,7 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.oasis.JROdtExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
-
+@SuppressWarnings("deprecation")
 @Component
 public class ReportUtil implements Serializable {
 
@@ -54,9 +54,11 @@ public class ReportUtil implements Serializable {
 	private String caminhoSubreport_Dir = "";
 	private File arquivoGerado = null;
 
-	public StreamedContent geraRelatorio(List<?> listDataBeanColletionReport, 
-			HashMap parametrosRelatorio,
-			String nomeRelatorioJasper, String nomeRelatorioSaida, int tipoRelatorio) throws JRException, FileNotFoundException {
+	public StreamedContent geraRelatorio(List<?> listDataBeanColletionReport,
+			HashMap parametrosRelatorio, String nomeRelatorioJasper,
+			String nomeRelatorioSaida, int tipoRelatorio) throws JRException,
+			FileNotFoundException {
+		
 
 		/*
 		 * Cria a lista de collectionDataSource de beans que carregam os dados para o

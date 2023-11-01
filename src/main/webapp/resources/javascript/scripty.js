@@ -1,4 +1,18 @@
 
+function logout(contextPath) {
+    
+   // document.location = '#{request.contextPath}' + "/j_spring_security_logout"
+    document.location =	 contextPath + '/j_spring_security_logout';
+    var post = 'invalidar_session';
+    $.ajax(
+       { 
+          type: "POST", 
+          url: post
+        }
+    );
+}
+
+
 function invalidarSession(context, pagina) { 
      document.location = (context + pagina + ".jsf");
 }
@@ -18,7 +32,25 @@ function validarSenhaLogin() {
 		 $("#j_password").focus();
 		return false;
 	}
-
 	return true;
-
 }
+
+function abrirMenupop() {
+	  $('#menupop').show('slow').mouseleave(function() {
+	  	fecharMenupop();
+	  });
+	}
+
+function fecharMenupop() {
+	  if ($("#menupop").is(":visible")) {
+	  	$('#menupop').hide('slow');
+	  }
+	}
+
+function redirecionarPagina(context, pagina) { 
+	
+	pagina = pagina + ".jsf";
+	document.location = context + pagina;
+}
+
+
