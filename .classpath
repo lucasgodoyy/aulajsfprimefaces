@@ -96,5 +96,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xmlbeans-1.0.3.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/hamcrest-2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ehluc/OneDrive/Documentos/validation-api-2.0.1.Final.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
