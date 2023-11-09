@@ -52,6 +52,16 @@ public abstract class BeanViewAbstract implements ActionViewPadrao {
 
 	}
 
+	protected void sucesso() throws Exception {
+		statusOperation(EstatusPersistencia.SUCESSO);
+		
+	}
+	
+	protected void error() throws Exception {
+		statusOperation(EstatusPersistencia.ERRO);
+		
+	}
+	
 	@Override
 	public void consultaEntidade() throws Exception {
 

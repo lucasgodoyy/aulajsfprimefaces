@@ -54,6 +54,8 @@ public class ReportUtil implements Serializable {
 	private String caminhoSubreport_Dir = "";
 	private File arquivoGerado = null;
 
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public StreamedContent geraRelatorio(List<?> listDataBeanColletionReport,
 			HashMap parametrosRelatorio, String nomeRelatorioJasper,
 			String nomeRelatorioSaida, int tipoRelatorio) throws JRException,

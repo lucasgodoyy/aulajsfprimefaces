@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.framework.hibernate.session.HibernateUtil;
 import br.com.framework.interfac.crud.InterfaceCrud;
+import br.com.project.model.classes.Estado;
 
 @SuppressWarnings({ "unchecked" })
 @Component
@@ -175,7 +176,15 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 		return list;
 
 	}
-
+	
+	public List<T> findListByQueryDinamica(String s) throws Exception {
+		validaSessionFactory();
+		List<T> lista = new ArrayList<T>();
+		lista = sessionFactory.getCurrentSession().createQuery(s).list();
+		return lista;
+	}
+		
+		
 	/**
 	 * TestUnit Ok
 	 */
@@ -304,14 +313,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 	/**
 	 * TestUnit Ok
 	 */
-	public List<T> findListByQueryDinamica(String query) throws Exception {
-		validaSessionFactory();
-		List<T> lista = new ArrayList<T>();
-		lista = sessionFactory.getCurrentSession()
-				.createQuery(query.toString()).list();
-		return lista;
-
-	}
+	
 
 	/**
 	 * Realiza consulta no banco de dados, iniciando o carregamento a partir do
@@ -529,5 +531,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 				query.toString());
 		return queryReturn;
 	}
+
+	
 
 }

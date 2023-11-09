@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_cidade" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f597a7af-b8cb-4dd3-933f-fe2dfdb80b4d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Colecao de objeto projeto aulasjsfprimefaces"/>
+	<parameter name="REPORT_PARAMETERS_IMG" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cid_codigo" class="java.lang.Long">
+		<fieldDescription><![CDATA[cid_codigo]]></fieldDescription>
+	</field>
+	<field name="estado" class="br.com.project.model.classes.Estado">
+		<fieldDescription><![CDATA[estado]]></fieldDescription>
+	</field>
+	<field name="cid_descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[cid_descricao]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="86" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="86" uuid="fb24f118-fd96-458e-aa0a-e9b36d6155f9">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="50"/>
+				</textElement>
+				<text><![CDATA[Cidades]]></text>
+			</staticText>
+			<image>
+				<reportElement x="230" y="0" width="326" height="86" uuid="bcd9a1ef-ce67-4ba0-8824-ad2e18ed481a"/>
+				<imageExpression><![CDATA[$P{REPORT_PARAMETERS_IMG} + "leaf_banner_violet.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="5" width="100" height="30" uuid="7cf76ec9-ce4b-463f-bd1e-6025a1436581"/>
+				<text><![CDATA[C�digo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="5" width="270" height="30" uuid="151851b9-7617-4c38-849d-c2cf4256eced"/>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="5" width="186" height="30" uuid="ba2c8775-4159-4780-a67e-55ca2afeaf09"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="bffb9a80-6911-4e34-b784-c14f9a2a8490"/>
+				<textFieldExpression><![CDATA[$F{cid_codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="270" height="30" uuid="7f9609bf-63d2-4155-a60f-6ac4bd8ad0bd"/>
+				<textFieldExpression><![CDATA[$F{cid_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="186" height="30" uuid="e08ed82a-c42a-41c1-869a-ac7e6e6ff104"/>
+				<textFieldExpression><![CDATA[$F{estado}.getEst_nome()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="60" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="470" y="30" width="100" height="30" uuid="156c03c5-cbf5-41a5-925d-ecbf7ae63d73"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

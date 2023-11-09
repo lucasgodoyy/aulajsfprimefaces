@@ -23,7 +23,8 @@ public class InformacaoRevisao extends DefaultRevisionEntity implements Serializ
 
 	@ManyToOne
 	@ForeignKey(name = "entidade_fk")
-	@JoinColumn(nullable = false, name = "entidade")
+	@JoinColumn(name = "entidade")
+	
 	private Entidade entidade;
 	
 	public Entidade getEntidade() {

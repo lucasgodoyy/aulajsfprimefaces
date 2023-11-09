@@ -119,6 +119,45 @@ function redirecionarPagina(context, pagina) {
 	document.location = context + pagina;
 }
 
+function addFocoAoCampo(campo) {
+	var id = getValorElementPorId(campo);
+	if (id != undefined) {
+		document.getElementById(id).focus();
+	}
+}
+
+
+// Faz com que a tecla enter tenha efeito de TAB pulando de campo em campo
+function gerenciaTeclaEnter() {
+	$(document).ready(function() {
+		$('input').keypress(function(e) {
+			var code = null;
+			code = (e.keyCode ? e.keyCode : e.which);
+			return (code === 13) ? false : true;
+
+		});
+
+		$('input[type=text]').keydown(function(e) {
+			// Obter o pr�ximo �ndice do elemento de entrada de texto
+			var next_idx = $('input[type=text]').index(this) + 1;
+
+			// Obter o n�mero de elemento de entrada de texto em um documento html
+			var tot_idx = $('body').find('input[type=text]').length;
+
+			// Entra na tecla no c�digo ASCII
+			if (e.keyCode === 13) {
+				if (tot_idx === next_idx)
+					// V� para o primeiro elemento de texto
+					$('input[type=text]:eq(0)').focus();
+				else
+					// V� para o elemento de entrada de texto seguinte
+					$('input[type=text]:eq(' + next_idx + ')').focus();
+			}
+		});
+	});
+
+}
+
 
 function localeData_pt_br() {
 		PrimeFaces.locales['pt'] = {

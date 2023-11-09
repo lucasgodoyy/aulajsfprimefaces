@@ -35,7 +35,7 @@ public class Cidade implements Serializable{
 	private Long cid_codigo;
 	
 	
-	@IdentificaCampoPesquisa(descricaoCampo = "Descri��o", campoConsulta = "cid_descricao", principal = 1)
+	@IdentificaCampoPesquisa(descricaoCampo = "Descrição", campoConsulta = "cid_descricao", principal = 1)
 	@Column(length = 100, nullable = false)
 	private String cid_descricao;
 	

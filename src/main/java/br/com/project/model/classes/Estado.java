@@ -38,7 +38,7 @@ public class Estado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
-	@IdentificaCampoPesquisa(descricaoCampo = "C�digo", campoConsulta = "est_id")
+	@IdentificaCampoPesquisa(descricaoCampo = "Código", campoConsulta = "est_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estado_seq")
 	private Long est_id;
@@ -129,9 +129,13 @@ public class Estado implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Estado other = (Estado) obj;
-		return Objects.equals(est_id, other.est_id);
+		if (est_id == null) {
+			if (other.est_id != null)
+				return false;
+		} else if (!est_id.equals(other.est_id))
+			return false;
+		return true;
 	}
-	
 	
 	
 	

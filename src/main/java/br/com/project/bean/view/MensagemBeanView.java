@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedBean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.framework.interfac.crud.InterfaceCrud;
 import br.com.project.bean.geral.BeanManagedViewAbstract;
 
 
@@ -22,6 +23,18 @@ public class MensagemBeanView extends BeanManagedViewAbstract {
 	public String novo() throws Exception {
 		System.out.println("chamou metodo novo bean msg");
 		return "";
+	}
+
+
+	@Override
+	protected Class<?> getClassImplement() {
+		return null;
+	}
+
+
+	@Override
+	protected InterfaceCrud<?> getController() {
+		return null;
 	}
 	
 	
