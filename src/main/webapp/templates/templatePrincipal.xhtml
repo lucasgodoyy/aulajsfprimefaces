@@ -118,12 +118,13 @@
 						style="width: 185px;border: none;background: none; color: #000;">
 					
 					<sec:ifAnyGranted roles="CADASTRO_ACESSAR, ADMIN">	 
-						
 						<p:submenu label="Cadastros" id="subMenuCadastro">
+						
+						
 						<sec:ifAnyGranted roles="CIDADE_ACESSAR, ADMIN">		
 							<p:menuitem value="Cidade" id="menucidade"
-								action= "/cadastro/cad_cidade.jsf?faces-redirect=true">
-								</p:menuitem>
+								onclick="redirecionarPage('#{request.contextPath}','/cadastro/', 'find_cidade')"
+								ajax="true"  />
 						</sec:ifAnyGranted>
 						
 						</p:submenu>
@@ -157,7 +158,7 @@
 			<p:dialog widgetVar="alterarSenhaDialog" id="alterarSenhaDialog" width="240"
 				modal="true" resizable="false" height="170"
 				header="Alterar senha" appendToBody="false" dynamic="true">
-					corpo
+					<ui:include src="/cadastro/dialog_alterar_senha.xhtml"/>
 			</p:dialog>
 			
 			

@@ -1,6 +1,5 @@
 package br.com.project.bean.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -9,9 +8,12 @@ import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.framework.interfac.crud.InterfaceCrud;
 import br.com.project.bean.geral.BeanManagedViewAbstract;
+import br.com.project.carregamento.lazy.CarregamentoLazyListForObject;
 import br.com.project.geral.controller.CidadeController;
 import br.com.project.model.classes.Cidade;
 
@@ -23,21 +25,18 @@ public class CidadeBeanView extends BeanManagedViewAbstract{
 
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	private CarregamentoLazyListForObject<Cidade> list = new CarregamentoLazyListForObject<Cidade>();
+	private Cidade objetoSelecionado = new Cidade();
 	private String url = "/cadastro/cad_cidade.jsf?faces-redirect=true";
 	private String urlFind = "/cadastro/find_cidade.jsf?faces-redirect=true";
 	
 	
-	private Cidade objetoSelecionado = new Cidade();	
-	
 	@Autowired
 	private CidadeController cidadeController;
 	
-	private List<Cidade> list = new ArrayList<Cidade>();
-
 	
-	public List<Cidade> getList() throws Exception {
-		list = cidadeController.finList(getClassImplement());
+	public CarregamentoLazyListForObject<Cidade> getList() throws Exception {
 		return list;
 	}
 	
@@ -59,7 +58,7 @@ public class CidadeBeanView extends BeanManagedViewAbstract{
 	
 	@Override
 	public void saveNotReturn() throws Exception { 
-		list.clear();
+		list.getList().clear();
 		objetoSelecionado = cidadeController.merge(objetoSelecionado);	
 		list.add(objetoSelecionado);
 		objetoSelecionado = new Cidade();
@@ -90,7 +89,15 @@ public class CidadeBeanView extends BeanManagedViewAbstract{
 	
 	
 	@Override
+	public void consultaEntidade() throws Exception {
+		objetoSelecionado = new Cidade();	
+		super.consultaEntidade();
+	}
+	
+	@Override
+	@RequestMapping(value = { "**/find_cidade" }, method = RequestMethod.POST)
 	public void setarVariaveisNulas() throws Exception {
+		valorPesquisa = "";
 		list.clear();
 		objetoSelecionado = new Cidade();
 	}
@@ -130,22 +137,21 @@ public class CidadeBeanView extends BeanManagedViewAbstract{
 	}
 
 	
+	public Cidade getObjetoSelecionado() {
+		return objetoSelecionado;
+	}
+	
 	public void setCidadeController(CidadeController cidadeController) {
 		this.cidadeController = cidadeController;
 	}
 
-	public Cidade getObjetoSelecionado() {
-		return objetoSelecionado;
-	}
+	
 	
 	public CidadeController getCidadeController() {
 		return cidadeController;
 	}
 
-
-	public void setList(List<Cidade> list) {
-		this.list = list;
-	}
+	
 
 	@Override
 	protected Class<Cidade> getClassImplement() {
@@ -155,6 +161,11 @@ public class CidadeBeanView extends BeanManagedViewAbstract{
 	@Override
 	protected InterfaceCrud<Cidade> getController() {
 		return cidadeController;
+	}
+
+	@Override
+	public String condicaoAndParaPesquisa() {
+		return "";
 	}
 	
 	

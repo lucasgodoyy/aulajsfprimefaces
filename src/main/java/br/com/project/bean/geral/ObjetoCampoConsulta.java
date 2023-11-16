@@ -2,7 +2,6 @@ package br.com.project.bean.geral;
 
 import java.io.Serializable;
 import java.util.Comparator;
-import java.util.Objects;
 
 public class ObjetoCampoConsulta implements Serializable, Comparator<ObjetoCampoConsulta> {
 
@@ -37,7 +36,7 @@ public class ObjetoCampoConsulta implements Serializable, Comparator<ObjetoCampo
 		this.tipoClass = tipoClass;
 	}
 
-	public Integer getPrincipal() {
+	public Integer isPrincipal() {
 		return principal;
 	}
 
@@ -47,7 +46,11 @@ public class ObjetoCampoConsulta implements Serializable, Comparator<ObjetoCampo
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(campoBanco);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((campoBanco == null) ? 0 : campoBanco.hashCode());
+		return result;
 	}
 
 	@Override
@@ -59,7 +62,12 @@ public class ObjetoCampoConsulta implements Serializable, Comparator<ObjetoCampo
 		if (getClass() != obj.getClass())
 			return false;
 		ObjetoCampoConsulta other = (ObjetoCampoConsulta) obj;
-		return Objects.equals(campoBanco, other.campoBanco);
+		if (campoBanco == null) {
+			if (other.campoBanco != null)
+				return false;
+		} else if (!campoBanco.equals(other.campoBanco))
+			return false;
+		return true;
 	}
 
 	@Override
@@ -69,7 +77,8 @@ public class ObjetoCampoConsulta implements Serializable, Comparator<ObjetoCampo
 
 	@Override
 	public int compare(ObjetoCampoConsulta o1, ObjetoCampoConsulta o2) {
-		return ((ObjetoCampoConsulta) o1).getPrincipal().compareTo(((ObjetoCampoConsulta) o2).getPrincipal());
+		return ((ObjetoCampoConsulta)o1).isPrincipal().compareTo( ((ObjetoCampoConsulta)o2).isPrincipal());
 	}
+
 
 }

@@ -1,5 +1,10 @@
 var arrayIdsElementsPage = new Array;
-
+var idundefined = 'idundefined';
+var classTypeString = 'java.lang.String';
+var classTypeLong = 'java.lang.Long';
+var classTypeDate = 'java.util.Date';
+var classTypeBoolean = 'java.lang.Boolean';
+var classTypeBigDecimal = 'java.math.BigDecimal';
 
 
 function initTemplate() {
@@ -119,10 +124,57 @@ function redirecionarPagina(context, pagina) {
 	document.location = context + pagina;
 }
 
+
+/**
+ * Usada apenas para o menu do sistema Limpar variaveis por ajax e redireciona
+ * sempre a pagina
+ * 
+ * @param context
+ * @param pagina
+ * @param post
+ */
+function redirecionarPage(context, pagina, post) { 
+	pagina = pagina + post + ".jsf";
+	$.ajax(
+			{ type: "POST",
+			  url: post
+			}).always(function(resposta) { 
+					document.location = context + pagina;
+			});
+}
+
+
+
+/**
+ * Adiciona foco ao campo passado como paramentro
+ * 
+ * @param campo
+ */
 function addFocoAoCampo(campo) {
 	var id = getValorElementPorId(campo);
 	if (id != undefined) {
 		document.getElementById(id).focus();
+	}
+}
+
+function validarCampoPesquisa(valor) {
+	if ( valor != undefined  &&  valor.value != undefined ) {
+		if (valor.value.trim() === '') {
+			valor.value = '';
+		}else {
+			valor.value = valor.value.trim();
+		}
+	}
+}
+
+
+
+function permitNumber(e) {
+	var unicode = e.charCode ? e.charCode : e.keyCode;
+	if (unicode != 8 && unicode != 9) {
+		if (unicode < 48 || unicode > 57) {
+			return false;
+		}
 	}
 }
 
@@ -156,6 +208,67 @@ function gerenciaTeclaEnter() {
 		});
 	});
 
+}
+
+
+/**
+ * primefaces.js c�digo fonte
+ * escapeClientId:function(a){return"#"+a.replace(/:/g,"\\:")}
+ * 
+ * @param id
+ * @returns id
+ */
+function getValorElementPorIdJQuery(id) {
+	var id = getValorElementPorId(id);
+	if (id.trim() != idundefined) {
+		 return PrimeFaces.escapeClientId(id);
+	}
+	
+	 return idundefined;
+}
+
+
+
+/**
+ * Gera automaticamente mascara para a tela de pesquisa var classTypeString =
+ * 'java.lang.String'; var classTypeLong = 'java.lang.Long'; var classTypeDate =
+ * 'java.util.Date'; var classTypeBoolean = 'java.lang.Boolean'; var
+ * classTypeBigDecimal = 'java.math.BigDecimal';
+ * 
+ * @param elemento
+ */
+function addMascaraPesquisa(elemento) {
+	var id = getValorElementPorIdJQuery('valorPesquisa');
+	var vals = elemento.split("*");
+	var campoBanco = vals[0];
+	var typeCampo = vals[1];
+	
+	$(id).unmask();
+	$(id).unbind("keypress"); 
+	$(id).unbind("keyup");
+	$(id).unbind("focus");
+	$(id).val('');
+	if (id != idundefined) {
+		jQuery(function($) {
+			if (typeCampo === classTypeLong) {
+				$(id).keypress(permitNumber);
+			}
+			else if (typeCampo === classTypeBigDecimal) {	
+				$(id).maskMoney({precision:4, decimal:",", thousands:"."}); 
+			}
+			else if (typeCampo === classTypeDate) {
+				$(id).mask('99/99/9999');
+			}
+			else {
+				$(id).unmask();
+				$(id).unbind("keypress");
+				$(id).unbind("keyup");
+				$(id).unbind("focus");
+				$(id).val('');
+			}
+			addFocoAoCampo("valorPesquisa");
+		});
+	}
 }
 
 

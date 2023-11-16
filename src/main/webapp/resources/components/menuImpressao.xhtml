@@ -10,49 +10,37 @@
 
 <composite:interface>
 	<composite:attribute name="bean" required="true" />
-	<composite:attribute name="tipoEntidadeTemp" required="false" />
+	
 </composite:interface>
 
 <composite:implementation>
 	<h:panelGrid columns="4" style="width:100px"> 
-			<h:commandLink>
+			<h:commandLink immediate="true">
 				<f:setPropertyActionListener target="#{cc.attrs.bean.tipoRelatorio}"
 					value="1" />
 				<p:fileDownload value="#{cc.attrs.bean.arquivoReport}" />
 				<h:graphicImage library="img" name="pdf.png" styleClass="bordaImagem"/>
-				<h:inputHidden binding="#{cc.attrs.bean.htmlInputHidden}" value="#{cc.attrs.tipoEntidadeTemp}" immediate="true" >
-					<f:attribute name="tipoEntidadeTemp" value="#{cc.attrs.tipoEntidadeTemp}"/>
-				</h:inputHidden>
 			</h:commandLink>
 
-			<h:commandLink> 
+			<h:commandLink immediate="true"> 
 				<f:setPropertyActionListener target="#{cc.attrs.bean.tipoRelatorio}" 
 					value="2" />
 				<p:fileDownload value="#{cc.attrs.bean.arquivoReport}" />
 				<h:graphicImage library="img" name="excel.png" styleClass="bordaImagem"/>
-				<h:inputHidden binding="#{cc.attrs.bean.htmlInputHidden}" value="#{cc.attrs.tipoEntidadeTemp}" immediate="true">
-					<f:attribute name="tipoEntidadeTemp" value="#{cc.attrs.tipoEntidadeTemp}"/>
-				</h:inputHidden>				
 			</h:commandLink>
 
-			<h:commandLink>
+			<h:commandLink immediate="true">
 				<f:setPropertyActionListener target="#{cc.attrs.bean.tipoRelatorio}"
 					value="3" />
 				<p:fileDownload value="#{cc.attrs.bean.arquivoReport}" />
 				<h:graphicImage library="img" name="html.png" styleClass="bordaImagem"/>
-				<h:inputHidden binding="#{cc.attrs.bean.htmlInputHidden}" value="#{cc.attrs.tipoEntidadeTemp}" immediate="true">
-					<f:attribute name="tipoEntidadeTemp" value="#{cc.attrs.tipoEntidadeTemp}"/>
-				</h:inputHidden>				
 			</h:commandLink>
 
-			<h:commandLink>
+			<h:commandLink immediate="true">
 				<f:setPropertyActionListener target="#{cc.attrs.bean.tipoRelatorio}"
 					value="4" />
 				<p:fileDownload value="#{cc.attrs.bean.arquivoReport}" />
 				<h:graphicImage library="img" name="ods.png" styleClass="bordaImagem"/>
-				<h:inputHidden binding="#{cc.attrs.bean.htmlInputHidden}" value="#{cc.attrs.tipoEntidadeTemp}" immediate="true">
-					<f:attribute name="tipoEntidadeTemp" value="#{cc.attrs.tipoEntidadeTemp}"/>
-				</h:inputHidden>				
 			</h:commandLink>
 		
 	</h:panelGrid>
