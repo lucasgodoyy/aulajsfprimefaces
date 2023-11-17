@@ -37,6 +37,8 @@ public interface InterfaceCrud<T> extends Serializable {
 
 	List<T> finList(Class<T> obj) throws Exception;
 
+	
+	
 	Object findById(Class<T> entidade, Long id) throws Exception;
 
 	List<T> findListByProperty(Class<T> entidade, Object atributo, Object valor)

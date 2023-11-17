@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.framework.hibernate.session.HibernateUtil;
 import br.com.framework.interfac.crud.InterfaceCrud;
-import br.com.project.model.classes.Estado;
 
 @SuppressWarnings({ "unchecked" })
 @Component
@@ -146,17 +145,16 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 	 * TestUnit Ok
 	 */
 	@Override
-	public T findById(Class<T> entidade, Long id) throws Exception {
+	public Object findById(Class<T> entidade, Long id) throws Exception {
 		validaSessionFactory();
-		T ob = (T) sessionFactory.getCurrentSession().load(entidade, id);
-		return ob;
+		Object obj = sessionFactory.getCurrentSession().load(entidade, id);
+		return obj;
 	}
 
-	public T findById(Class<T> entidade, String id) throws Exception {
+	public T findByPorId(Class<T> entidade, Long id) throws Exception {
 		validaSessionFactory();
-		T ob = (T) sessionFactory.getCurrentSession().load(entidade,
-				Long.parseLong(id));
-		return ob;
+		T obj = (T) sessionFactory.getCurrentSession().load(entidade, id);
+		return obj;
 	}
 
 	/**
@@ -532,6 +530,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 		return queryReturn;
 	}
 
+	
 	
 
 }

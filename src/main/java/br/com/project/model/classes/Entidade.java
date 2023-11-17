@@ -3,6 +3,7 @@ package br.com.project.model.classes;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,6 +34,11 @@ public class Entidade implements Serializable {
 	private String ent_senha;
 	private boolean ent_inativo = false;
 	
+	@IdentificaCampoPesquisa(descricaoCampo = "Nome Fantasia", campoConsulta = "ent_nomefantasia", principal = 1)
+	@Column(length = 100)
+	private String ent_nomefantasia;
+	
+
 	
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -77,4 +83,13 @@ public class Entidade implements Serializable {
 	public void setEnt_ultimoacesso(Date ent_ultimoacesso) {
 		this.ent_ultimoacesso = ent_ultimoacesso;
 	}
+	
+	public String getEnt_nomefantasia() {
+		return ent_nomefantasia;
+	}
+
+	public void setEnt_nomefantasia(String ent_nomefantasia) {
+		this.ent_nomefantasia = ent_nomefantasia;
+	}
+	
 }
