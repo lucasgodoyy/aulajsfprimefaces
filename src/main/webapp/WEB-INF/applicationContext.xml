@@ -171,7 +171,7 @@
 	<bean id="controller" class="br.com.framework.controller.crud.Controller"/>
 	<bean id="cidadeController" class="br.com.project.geral.controller.CidadeController" />
 	<bean id="estadoController" class="br.com.project.geral.controller.EstadoController" />
-
+	<bean id="mensagemController" name="mensagemController" class="br.com.project.geral.controller.MensagemController" />
 
 
 </beans>

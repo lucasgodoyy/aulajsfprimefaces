@@ -2,6 +2,9 @@ package br.com.project.model.classes;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.envers.Audited;
+import org.primefaces.json.JSONObject;
 
 import br.com.project.annotation.IdentificaCampoPesquisa;
 
@@ -91,5 +95,40 @@ public class Entidade implements Serializable {
 	public void setEnt_nomefantasia(String ent_nomefantasia) {
 		this.ent_nomefantasia = ent_nomefantasia;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((ent_codigo == null) ? 0 : ent_codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Entidade other = (Entidade) obj;
+		if (ent_codigo == null) {
+			if (other.ent_codigo != null)
+				return false;
+		} else if (!ent_codigo.equals(other.ent_codigo))
+			return false;
+		return true;
+	}
+
 	
+	
+	public JSONObject getJson() {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("ent_codigo", ent_codigo);
+		map.put("ent_login", ent_login);
+		map.put("ent_nomefantasia", ent_nomefantasia);
+		return new JSONObject(map);
+	}
 }

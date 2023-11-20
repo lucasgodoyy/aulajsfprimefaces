@@ -123,7 +123,7 @@
 	 		<p:ajax event="rowSelect" global="false" listener="#{cc.attrs.managedBeanView.onRowSelect}" onsuccess="processaDelete(this);" />
        		<p:ajax event="rowUnselect" global="false" listener="#{cc.attrs.managedBeanView.onRowUnselect}" onsuccess="processaDelete(this);"/>		
 
-			<ui:include src="#{cc.attrs.colunasGridDataTableList}" />  
+			<ui:include src="#{cc.attrs.colunasGridDataTableList}"/>  
 
 				<p:column rendered="#{cc.attrs.exibirBotaoAdd}" style="width:70px;" id="colunaSelecionar" exportable="false" >
 					<center>

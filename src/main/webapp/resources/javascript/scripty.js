@@ -68,6 +68,22 @@ function getValorElementPorId(id) {
 }
 
 
+function pesquisarUserDestinoPerderFocoDialog(codUser) {
+	if (codUser.trim() != '') {
+	 statusDialog.show();
+	 $("#loginDestinoMsgDialog").val('');
+	 $.get("buscarUsuarioDestinoMsg?codEntidade=" + codUser, function(resposta) {
+	        if (resposta != 'erro' && resposta.trim() != ''){
+	        	var entidadeObj = JSON.parse(resposta);
+	        	$("#usr_destinoMsgDialog").val(entidadeObj.ent_codigo);
+	        	$("#loginDestinoMsgDialog").val(entidadeObj.ent_login);
+	        }
+	   })
+	   
+	}
+}
+
+
 
 
 function logout(contextPath) {
