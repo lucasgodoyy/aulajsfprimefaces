@@ -10,15 +10,17 @@
 
 <ui:composition template="/templates/templatePrincipal.xhtml">
 	<ui:define name="corpo">
-		<util:pesquisa 
-		managedBeanView="#{cidadeBeanView}"
-		menuImpressao="true"
-		ocultaNovo = "#{contextoBean.possuiAcesso('CIDADE_NOVO', 'ADMIN')}"
-		nomePesquisa="Pesquisa de Cidade"
-		colunasGridDataTableList="/resources/components/colunasDataTableCidade.xhtml"
-		exibirBotaoAdd= "false">
 		
+		<util:pesquisa managedBeanView="#{funcionarioBeanView}"
+			nomePesquisa="Pesquisa de Funcionário"
+			colunasGridDataTableList="/resources/components/colunasDataTableFuncionario.xhtml"
+			ocultaNovo = "#{contextoBean.possuiAcesso('FUNCIONARIO_NOVO', 'ADMIN')}"
+			exibirBotaoAdd="false"
+			tipoEntidadeTemp = "TIPO_CADASTRO_FUNCIONARIO"
+			menuImpressao="true"
+			consultarInativos = "true">
 		</util:pesquisa>
+		
 	</ui:define>
 </ui:composition>
 </html>

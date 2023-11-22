@@ -76,6 +76,7 @@ public class MensagemBeanView extends BeanManagedViewAbstract {
 	
 	
 	
+	
 	@Override
 	protected Class<?> getClassImplement() {
 		return Mensagem.class;

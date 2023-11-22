@@ -68,8 +68,8 @@
 			
 		 	<p:column>
 				<p:row>
-					<p:inputText id="usr_destinoMsgDialog" styleClass="estiloIdCastro"
-						onblur="pesquisarUserDestinoPerderFocoDialog(this.value);addDestinoMsg(this.value);"
+					<p:inputText id="usr_destinoMsgDialog" styleClass="estiloIdCadastro"
+						onblur="pesquisarUserDestinoPerderFocoDialog(this.value);"
 						value="#{mensagemBeanView.objetoSelecionado.usr_destino.ent_codigo}"
 						immediate="false" required="true"
 						requiredMessage="Informe o destino." />
@@ -78,7 +78,7 @@
 					
 					<p:commandButton id="buttonPesquisaDestinoMsgDialog"
 						icon="imgPesquisa" ajax="true" immediate="true"
-						actionListener="#{funcionarioBeanView.setarVariaveisNulas}"
+						
 						oncomplete="destinoDialogMsgDialog.show();"
 						styleClass="buttonPesquisa" />
 					
@@ -270,10 +270,10 @@
 		appendToBody="false" dynamic="true">
 		<util:pesquisa managedBeanView="#{funcionarioBeanView}"
 			nomePesquisa="Pesquisa de usuário"
+			exibirBotaoAdd= "true"
 			colunasGridDataTableList="/resources/components/colunasDataTableFuncionario.xhtml"
-			exibirBotaoAdd="true" 
 			ocultaNovo="true"
-			funcaoJavaScript="destinoDialogMsgDialog.hide(),addDestinoSelecionadoMsgDialog('#{objeto.json}')">
+			funcaoJavaScript="pesquisarUserDestinoPerderFocoDialog(#{objeto.ent_codigo}), destinoDialogMsgDialog.hide()">
 		</util:pesquisa> 
 	</p:dialog>
 	

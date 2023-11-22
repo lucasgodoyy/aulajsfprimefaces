@@ -1,7 +1,5 @@
 package br.com.project.bean.view;
 
-import java.util.Date;
-
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import br.com.framework.interfac.crud.InterfaceCrud;
 import br.com.project.bean.geral.BeanManagedViewAbstract;
 import br.com.project.carregamento.lazy.CarregamentoLazyListForObject;
-import br.com.project.geral.controller.CidadeController;
 import br.com.project.geral.controller.EntidadeController;
 import br.com.project.model.classes.Entidade;
+import br.com.project.util.all.Messagens;
 
 @Controller
 @Scope(value = "session")
@@ -22,6 +20,8 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 
 	private static final long serialVersionUID = 1L;
 
+	private String url = "/cadastro/cad_funcionario.jsf?faces-redirect=true";
+	private String urlFind = "/cadastro/find_funcionario.jsf?faces-redirect=true";
 	private CarregamentoLazyListForObject<Entidade> list = new CarregamentoLazyListForObject<Entidade>();
 	private Entidade objetoSelecionado = new Entidade();
 	
@@ -40,6 +40,45 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 		return Entidade.class;
 	}
 	
+	@Override
+	public String novo() throws Exception {
+		
+		return url;
+	}
+	
+	@Override
+	public String editar() throws Exception {
+		
+		return url;
+	}
+	
+	@Override
+	public void saveNotReturn() throws Exception {
+		entidadeController.merge(objetoSelecionado);
+		if (!objetoSelecionado.getAcessos().contains("USER")) {
+			objetoSelecionado.getAcessos().add("USER");
+			
+		}
+	}
+	
+	@Override
+	public void excluir() throws Exception {
+			if (objetoSelecionado.getEnt_codigo() != null
+					&& objetoSelecionado.getEnt_codigo() > 0) {
+				entidadeController.delete(objetoSelecionado);
+				list.remove(objetoSelecionado);
+				objetoSelecionado = new Entidade();
+				sucesso();
+			}
+	}
+	
+	
+	@Override
+	public void saveEdit() throws Exception {
+		entidadeController.merge(objetoSelecionado);
+		Messagens.msgSeverityInfo("Atualizado com sucesso!");
+	}
+	
 	
 	@Override
 	public void consultaEntidade() throws Exception {
@@ -48,11 +87,16 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 			list.setTotalRegistroConsulta(super.totalRegistroConsulta(), super.getSqlLazyQuery());
 	}
 	
+	public String redirecionarFindEntidade() throws Exception {
+		return urlFind;
+	}
+	
 	
 	@Override
 	protected InterfaceCrud<Entidade> getController() {
 		return entidadeController;
 	}
+	
 	
 	
 	public CarregamentoLazyListForObject<Entidade> getList() {
@@ -74,7 +118,19 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 
 	@Override
 	public String condicaoAndParaPesquisa() {
-		return "";
+		return "and entity.tipoEntidade = 'FUNCIONARIO' ";
 	}
 
+
+	public ContextoBean getContextoBean() {
+		return contextoBean;
+	}
+
+
+	public void setContextoBean(ContextoBean contextoBean) {
+		this.contextoBean = contextoBean;
+	}
+
+
+	
 }

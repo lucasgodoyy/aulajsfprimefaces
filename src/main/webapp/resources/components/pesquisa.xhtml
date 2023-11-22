@@ -17,18 +17,12 @@
 			<composite:attribute name="menuImpressao" required="false" default="false"/>
 			<composite:attribute name="nomePesquisa" required="true" />
 			<composite:attribute name="colunasGridDataTableList" required="true" />
-			
+			<composite:attribute name="funcaoJavaScript" required="false" />
 			<composite:attribute name="tipoEntidadeTemp" required="false" />
 			<composite:attribute name="tipoTituloEmAberto" required="false" />
+			<composite:attribute name="exibirBotaoAdd" required="true" default="false"/>
 			
 			
-			<composite:attribute name="exibirBotaoAdd" required="true" />
-			<composite:attribute name="camposReload" required="false" />
-			
-			<composite:attribute name="funcaoJavaScript" required="false" />
-			
-			<composite:attribute name="exportPage" required="false" default="false"/>
-			<composite:attribute name="consultarInativos" required="false" default="false"/>
 		</composite:interface>
 
 		
@@ -120,8 +114,7 @@
 								   {PreviousPageLink} {PageLinks} 
 	 							   {NextPageLink} {LastPageLink} {RowsPerPageDropdown} ">
 	 							   
-	 		<p:ajax event="rowSelect" global="false" listener="#{cc.attrs.managedBeanView.onRowSelect}" onsuccess="processaDelete(this);" />
-       		<p:ajax event="rowUnselect" global="false" listener="#{cc.attrs.managedBeanView.onRowUnselect}" onsuccess="processaDelete(this);"/>		
+	 		
 
 			<ui:include src="#{cc.attrs.colunasGridDataTableList}"/>  
 

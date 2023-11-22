@@ -1,24 +1,35 @@
 package br.com.project.model.classes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.CollectionOfElements;
 import org.hibernate.envers.Audited;
 import org.primefaces.json.JSONObject;
 
+import br.com.project.acessos.Permissao;
 import br.com.project.annotation.IdentificaCampoPesquisa;
 
 @Audited
@@ -42,11 +53,40 @@ public class Entidade implements Serializable {
 	@Column(length = 100)
 	private String ent_nomefantasia;
 	
-
+	@Column(nullable = false, updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date ent_datacadastro = new Date();
 	
+	@CollectionOfElements
+	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+	@JoinTable(name = "entidadeacesso", uniqueConstraints = { @UniqueConstraint(name = "unique_acesso_entidade_key", columnNames = {
+			"ent_codigo", "esa_codigo" }) }, joinColumns = { @JoinColumn(name = "ent_codigo") })
+	@Column(name = "esa_codigo", length = 20)
+	private Set<String> acessos = new HashSet<String>();
+	
+	public Date getEnt_datacadastro() {
+		return ent_datacadastro;
+	}
 
+	public void setEnt_datacadastro(Date ent_datacadastro) {
+		this.ent_datacadastro = ent_datacadastro;
+	}
+
+	public String getEnt_email() {
+		return ent_email;
+	}
+
+	public void setEnt_email(String ent_email) {
+		this.ent_email = ent_email;
+	}
+
+	@Column(length = 100)
+	private String ent_email;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date ent_ultimoacesso;
+	
+	private String tipoEntidade = "";
 	
 	public boolean getEnt_inativo() {
 		return ent_inativo;
@@ -124,11 +164,28 @@ public class Entidade implements Serializable {
 
 	
 	
+	
 	public JSONObject getJson() {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("ent_codigo", ent_codigo);
 		map.put("ent_login", ent_login);
 		map.put("ent_nomefantasia", ent_nomefantasia);
 		return new JSONObject(map);
+	}
+
+	public String getTipoEntidade() {
+		return tipoEntidade;
+	}
+
+	public void setTipoEntidade(String tipoEntidade) {
+		this.tipoEntidade = tipoEntidade;
+	}
+
+	public Set<String> getAcessos() {
+		return acessos;
+	}
+
+	public void setAcessos(Set<String> acessos) {
+		this.acessos = acessos;
 	}
 }

@@ -15,11 +15,21 @@
       </center>
    </p:column>
   
-   <p:column>
-     
-         <f:facet name="header">Cidade</f:facet>
-         <h:outputText value="#{objeto.cid_codigo.cid_descricao}" />
-     
+  <p:column style="width:200px;">
+      <center>
+         <f:facet name="header">Nome Fantasia</f:facet>
+         <h:outputText value="#{objeto.ent_nomefantasia}" />
+      </center>
+   </p:column>
+   
+   <p:column style="width:50px;">
+      <center>
+         <f:facet name="header">Editar</f:facet>
+         <p:commandLink immediate="true" action="#{funcionarioBeanView.editar}" ajax="true" id="editarBairro" oncomplete="addFocoAoCampo('ent_nomefantasia');">
+            <h:graphicImage library="img" name="editar16.png" styleClass="bordaImagem" />
+            <f:setPropertyActionListener value="#{objeto}" target="#{funcionarioBeanView.objetoSelecionado}" />
+         </p:commandLink>
+      </center>
    </p:column>
    
    

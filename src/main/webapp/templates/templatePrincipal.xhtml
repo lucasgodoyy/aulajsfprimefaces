@@ -123,9 +123,19 @@
 						
 						<sec:ifAnyGranted roles="CIDADE_ACESSAR, ADMIN">		
 							<p:menuitem value="Cidade" id="menucidade"
+							immediate="true"
 								onclick="redirecionarPage('#{request.contextPath}','/cadastro/', 'find_cidade')"
 								ajax="true"  />
 						</sec:ifAnyGranted>
+						
+						<sec:ifAnyGranted roles="FUNCIONARIO_ACESSAR, ADMIN">		
+							<p:menuitem value="Funcionário" id="menufuncionario"
+								immediate="true"
+								action= "#{funcionarioBeanView.redirecionarFindEntidade}"/>			
+						</sec:ifAnyGranted>
+						
+						
+						
 						
 						</p:submenu>
 					</sec:ifAnyGranted>
